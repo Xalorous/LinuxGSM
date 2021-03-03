@@ -212,7 +212,8 @@ if [ -d "${backupdir}" ]; then
 		# number of backups.
 		backupcount=$(find "${backupdir}"/*.tar.gz | wc -l)
 		# most recent backup.
-		lastbackup=$(find "${backupdir}"/*.tar.gz | head -1)
+		# ls -1, one item per line; -tr sort by date reversed
+		lastbackup=$(ls -1tr "${backupdir}"/*.tar.gz | tail -1)
 		# date of most recent backup.
 		lastbackupdate=$(date -r "${lastbackup}")
 		# no of days since last backup.
